@@ -8,35 +8,58 @@
 
 import Foundation
 
-// Get the user input
-var rawInput = readLine()
+//Input
+
+//Loop forever until valid input is given.
+var validInput = ""
+while 1 == 1 {
+    
+    // Make sure input was given (creat a string from the string?)
+    guard let input = readLine() else {
+        
+        // Tell the user there was a problem
+        print("Please enter a string with at least 1 character and no more than 30 characters.")
+        // Go to next iteration of the loop
+        continue
+    }
+    
+    // Is the string the correct length?
+    if input.count < 1 || input.count > 30 {
+        
+        // Tell the user there was a problem
+        print("Please enter a string with at least 1 character and no more than 30 characters.")
+        // Go to next iteration of the loop
+        continue
+        
+    }
+    // Check for Capital Letters
+    let upperInput = input.uppercased()
+    if input != upperInput {
+        continue
+    }
+    // If we got this far the input is guaranteed to be valid
+    validInput = input
+    break // Very important. Stops while loop
+    
+}
+
+
 
 // Print out the input provided
 //print("You said:")
 //print(rawInput)
 
-// Make sure input was given (creat a string from the string?)
-guard let input : String = rawInput else{
-    print("no")
-    //Error
-    exit(9)
-}
+
 
 
 // Letters that can rotate 180 degrees
 var lettersAbleToRotate = 0
 
-// Sentence is the right length
-if input.count > 30 || input.count < 1 {
-    print("No")
-    exit(9)
-}
-
 // Check for uppercase
 
 
 // Process - inspect each character
-for individualCharacter in input {
+for individualCharacter in validInput {
     
     // Debug
     //print(individualCharacter)
@@ -53,7 +76,7 @@ for individualCharacter in input {
 }
 
 // output
-if lettersAbleToRotate == input.count {
+if lettersAbleToRotate == validInput.count {
     print("Yes")
 } else{
     print("No")
